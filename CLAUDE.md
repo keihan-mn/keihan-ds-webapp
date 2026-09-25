@@ -20,7 +20,7 @@
 - Tailwind CSS は **v4**。テーマ・カラーは `tailwind.config.js` ではなく CSS で定義する（`tailwind.config.*` を作らない）
   - 値: `app/globals.css` の `:root`（例 `--primary: #0056A8;`）
   - Tailwind クラスとの対応: 同ファイルの `@theme inline`（例 `--color-primary: var(--primary);` → `bg-primary` が使える）
-  - トークンを足すときは両方に1行ずつ追加する（企画部の承認が必要）
+  - トークンを足すときは両方に1行ずつ追加する（事前にユーザーに確認する）
 - 外から入る値（JSON データ・フォーム入力・API の入出力）は **zod** で検証する（手本: `lib/schema.ts` `lib/data.ts` `lib/order-form.ts`）
 - デプロイ先は **Vercel**。`next build` の標準構成を崩さない（独自サーバー・`output: "export"` にしない）
 
@@ -31,7 +31,7 @@
 
 ## 正本（SSoT）
 
-- 色・角丸・フォント: `app/globals.css`（**企画部のみ変更可**。各アプリで値を変えない）
+- 色・角丸・フォント: `app/globals.css`（各アプリで値を変えない）
 - 部品: `components/ui/`（shadcn。独自 variant あり）と `app/(app)/catalog/page.tsx`（部品カタログ）
 - 状態の色: `lib/status.ts`
 
@@ -51,7 +51,7 @@ MUST: Next.js のコードを書く前に `node_modules/next/dist/docs/` の該�
 IMPORTANT:
 
 - **UI を変更する前に `/designing-keihan-ui` スキルを起動する**
-- 土台（色・角丸・フォント）に足りないものがあっても**独断で `globals.css` を変えない**。ユーザーに確認し、企画部への要望として扱う
+- 土台（色・角丸・フォント）に足りないものがあっても**独断で `globals.css` を変えない**。必ずユーザーに確認する
 - 編集は**基本はフォーム＋「保存」ボタン方式**。金額・数量・納期など大事な値は必ずこの方式にする。1つの操作で完結しすぐ戻せるもの（チェック・並び順・表示設定・メモ）に限り自動保存も可（保存中／保存済み・失敗を表示する）。迷ったら保存ボタン方式
 - 赤（`destructive`）は**削除・エラー専用**。状態表示や強調に使わない
 - **新しい UI 部品は shadcn/ui から追加する**（`npx shadcn@latest add <部品名>`）。自作の部品や他の UI ライブラリで代替しない。shadcn に無い部品が必要なら、作る前にユーザーに確認する

@@ -23,7 +23,7 @@ export const RULES = [
   {
     rule: "arbitrary-color",
     message:
-      "任意値の色。globals.css のトークンを使う（足りなければ企画部に相談）",
+      "任意値の色。globals.css のトークンを使う（足りなければユーザーに確認）",
     pattern: /-\[(?:#|rgb|hsl|oklch)/,
   },
   {

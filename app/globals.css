@@ -62,7 +62,7 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* 値の変更は企画部のみ。変更したら npm run test（コントラスト検証）を必ず通す。 */
+/* 各アプリで値を変えない。変更したら npm run test（コントラスト検証）を必ず通す。 */
 :root {
   --background: #f4f6f9;
   --foreground: #1a2230;
