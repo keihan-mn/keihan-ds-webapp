@@ -1,6 +1,6 @@
 # HANDOFF（引き継ぎ資料・正本）
 
-最終更新: 2026-09-25（実装フェーズ進行中。ブランチ feat/design-system-template）
+最終更新: 2026-09-25（全12タスクの実装と最終レビューが完了。ブランチ feat/design-system-template は main へ未マージ）
 
 ## 1. 目的と概要
 
@@ -25,10 +25,16 @@
 
 ## 3. 現在の状況
 
-- 設計（グリル）と実装計画の作成が完了。**実装は未着手**
-- リポジトリにあるのは `README.md`（初期の2行）・`CLAUDE.md`（引き継ぎ節のみ）・`HANDOFF.md`・`docs/`（設計書・計画）だけ
-- 上記の docs・CLAUDE.md・HANDOFF.md は**未コミット**の可能性がある。`git status` で確認すること
-- 実行方式はユーザーが「新しいエージェントで実装する」と決定。方式の推奨は **superpowers:executing-plans（ネイティブ：1エージェントが順に実装し、最後にレビュー）**。タスクが一本道で依存し合い、計画にコードがほぼ全部あるため
+- 実装計画の **全12タスクが完了**。ブランチ `feat/design-system-template`（main から分岐、**未 push・未マージ**）
+- 確認済み: `npm run test`（114件）・`lint`・`check:design`・`build`・`format:check` すべて成功。画面は PC 幅（1280px）とタブレット幅（768px）で目視確認し、Review Focus 1〜5 も実機で確認済み
+- 最終レビュー（別エージェント）: Critical 0 / Important 1（ブラウザの「戻る」で未保存の変更が消える → **修正済み**）/ Minor 4（未対応。下の「5. 未決事項」）
+- 計画からの変更点（判断の記録）:
+  - shadcn 4.21 は部品の `cn` を `"cn"` パッケージから読み込む形で出力する → `@/lib/utils` に書き換え、`cn` パッケージは入れていない（CLAUDE.md に手順を追記済み）
+  - Base UI の `Button` を `render={<Link/>}` でリンクにするときは `nativeButton={false}` が必要（計画に抜けていた。コードとスキル文書を修正済み）
+  - テストの後片付け（`cleanup`）を `__tests__/setup.ts` に追加
+  - 一覧表の顧客名列の最大幅を `max-w-48` に詰めた（1280px で金額列が切れていたため）
+  - 768px ちょうどではサイドバーは開いたまま（引き出しになるのは 768px 未満）。ページ全体ははみ出さないため、そのままにしている
+  - `docs/superpowers/` と `HANDOFF.md` は Prettier の整形対象外にした（記録文書を書かれたまま残すため）
 
 ## 4. 確定事項（要点。詳細は設計書）
 
@@ -47,13 +53,18 @@
 - **正式ロゴ（SVG）**: ユーザーが「正式データがある」と回答済みだが未受領。受領まで社名テキストで表示（計画 Task 6 の `lib/brand.ts` の `logoSrc: null`）。受領したら `public/brand/logo.svg` に置いて `logoSrc` を設定
 - 余白・行間の詰め具合、成功・注意色の最終値（部品カタログで実物を見てユーザーと調整）
 - 社外ページ用ルール（第2段）
+- 最終レビューで見つかった細かい改善（未対応。直すかどうかはユーザー判断）:
+  - アプリにない URL（`/nope` 等）の 404 画面が Next.js 標準の英語表示（`app/not-found.tsx` を足すと直る）
+  - 768px 未満でメニューを押しても引き出しが閉じない（`AppSidebar` で `setOpenMobile(false)` を呼ぶ）
+  - 桁が極端に大きい金額のエラー文言が分かりにくい（`lib/schema.ts` の金額に上限を足す）
+  - 空白のない長い英数字の案件名で詳細の見出しがはみ出すおそれ（`PageHeader` の h1 に `break-words`）
 
 ## 6. 次の一歩
 
-1. `git status` を確認。docs などが未コミットなら、ユーザーに確認してからコミットする
-2. `main` 上なので、作業用ブランチ（例 `feat/design-system-template`）を作る
-3. `superpowers:executing-plans` スキルで計画の **Task 1** から順に実装する。各タスク末尾でコミット
-4. タスク完了ごとに下の「7. 進捗」を更新する
+1. ユーザーにブランチの扱い（main へのマージ、push・PR 作成、またはそのまま保留）を確認する
+2. 上の「細かい改善」4件を直すかユーザーに確認する
+3. 部品カタログ（`/catalog`）を実物で見ながら、余白・成功色・注意色をユーザーと調整する
+4. 正式ロゴを受け取ったら `public/brand/README.md` の手順で差し替える
 
 ## 7. 進捗
 
@@ -82,3 +93,5 @@
 - base（Base UI）では `asChild` ではなく `render` を使う
 - 計画内に「環境で API が違ったら」の注意書きがある箇所（Task 8 の `params`、Task 10 の `CardTitle render`、Task 10 の lint 警告）は、計画の指示どおりに対処する
 - `npx shadcn@latest add` で上書き確認が出たら No。`--overwrite` は使わない
+- 開発サーバーのポート 3000 は、このマシンでは別のプロジェクトが使っていることがある。そのときは `npx next dev -p 3100` で起動する
+- 実装中の作業メモ（判断の記録）は `.superpowers/sdd/2026-09-25-keihan-design-system/progress.md` にある（git 管理外）
