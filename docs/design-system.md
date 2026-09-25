@@ -91,5 +91,7 @@ Next.js 16 / React 19 / TypeScript strict / Tailwind CSS v4（`@theme` で CSS �
 
 ## 8. 未決事項
 
-- ロゴ使用ルール資料の受け取り（正式ロゴ SVG は受領済み。`public/brand/logo.svg` に配置）
-- 社外ページ用ルール（第2段。別リポジトリ `keihan-ds-website` で用意する予定）
+なし（2026-09-25 時点）。
+
+- ロゴ: 正式ロゴ SVG（`public/brand/logo.svg`）を使う。これとは別の使用ルール資料は無いため、追加の取り決めは設けない
+- 社外ページ用ルール: このリポジトリの対象外（1章のとおり）。ここでの作業は不要
