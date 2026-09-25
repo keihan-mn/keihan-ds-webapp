@@ -114,7 +114,7 @@ export function OrderTable({ orders }: { orders: Order[] }) {
                       {order.title}
                     </Link>
                   </TableCell>
-                  <TableCell className="max-w-56 truncate">
+                  <TableCell className="max-w-48 truncate">
                     {order.customerName}
                   </TableCell>
                   <TableCell>{order.serviceType}</TableCell>
