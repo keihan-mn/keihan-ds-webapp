@@ -76,7 +76,7 @@
 - 保存は `<Button type="submit">保存</Button>`。未変更の間は `disabled`
 - 未保存離脱は `useUnsavedChangesGuard(dirty)`
 
-**Incorrect** — 入力と同時に保存
+**Incorrect** — 大事な値（案件名・金額など）を入力と同時に保存
 
 ```tsx
 <Input value={title} onChange={(e) => save({ title: e.target.value })} />
@@ -88,6 +88,32 @@
 <Input id="title" value={values.title} onChange={(e) => set("title")(e.target.value)} />
 ...
 <Button type="submit" disabled={!dirty}>保存</Button>
+```
+
+### 自動保存にしてよい場合
+
+1つの操作で完結し、すぐ元に戻せるもの（チェックの付け外し・並び順・表示の設定・メモや下書き）に限る。
+金額・数量・納期や、複数項目をまとめて確定するものは保存ボタン方式にする。迷ったら保存ボタン方式。
+
+- 保存中は「保存中…」、終わったら「保存しました」を表示する
+- 失敗したらその場でエラーを知らせ、元の値に戻す
+
+**Correct** — チェックの付け外しを自動保存し、結果を知らせる（`Checkbox` は未導入なので `npx shadcn@latest add checkbox` で追加する）
+
+```tsx
+<Checkbox
+  checked={done}
+  onCheckedChange={async (next) => {
+    setDone(next);
+    try {
+      await saveDone(next);
+      toast.success("保存しました");
+    } catch {
+      setDone(!next);
+      toast.error("保存できませんでした。もう一度お試しください");
+    }
+  }}
+/>
 ```
 
 ## 表
