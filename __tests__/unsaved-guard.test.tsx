@@ -1,6 +1,7 @@
 import { afterEach, describe, it, expect, vi } from "vitest";
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import {
+  UNSAVED_GUARD_KEY,
   UNSAVED_MESSAGE,
   useUnsavedChangesGuard,
 } from "@/hooks/use-unsaved-changes-guard";
@@ -57,5 +58,62 @@ describe("useUnsavedChangesGuard", () => {
     const event = new Event("beforeunload", { cancelable: true });
     fireEvent(window, event);
     expect(event.defaultPrevented).toBe(false);
+  });
+});
+
+/** ブラウザの「戻る」を押し、popstate が届くまで待つ */
+async function pressBrowserBack() {
+  const popped = new Promise((resolve) =>
+    window.addEventListener("popstate", resolve, { once: true }),
+  );
+  window.history.back();
+  await popped;
+}
+
+const onGuardEntry = () => window.history.state?.[UNSAVED_GUARD_KEY] === true;
+
+describe("useUnsavedChangesGuard（ブラウザの戻る）", () => {
+  it("未変更なら履歴を積まず、戻るで確認しない", async () => {
+    const confirm = vi.spyOn(window, "confirm");
+    window.history.pushState(null, "", "/orders/ORD-2026-0001");
+    render(<Harness dirty={false} />);
+    expect(onGuardEntry()).toBe(false);
+    await pressBrowserBack();
+    expect(confirm).not.toHaveBeenCalled();
+  });
+
+  it("未保存で戻るを押すと確認し、キャンセルならその画面に留まる", async () => {
+    const confirm = vi.spyOn(window, "confirm").mockReturnValue(false);
+    window.history.pushState(null, "", "/orders/ORD-2026-0001");
+    render(<Harness dirty />);
+    expect(onGuardEntry()).toBe(true);
+
+    await pressBrowserBack();
+    expect(confirm).toHaveBeenCalledWith(UNSAVED_MESSAGE);
+    // 留まるために見張り用の履歴を積み直している
+    expect(onGuardEntry()).toBe(true);
+    expect(window.location.pathname).toBe("/orders/ORD-2026-0001");
+  });
+
+  it("確認で OK なら本来の戻る先へ進む", async () => {
+    vi.spyOn(window, "confirm").mockReturnValue(true);
+    window.history.pushState(null, "", "/orders");
+    window.history.pushState(null, "", "/orders/ORD-2026-0001");
+    render(<Harness dirty />);
+
+    await pressBrowserBack();
+    await waitFor(() => expect(window.location.pathname).toBe("/orders"));
+  });
+
+  it("保存して未変更に戻ったあとの戻るは、確認せずにそのまま戻る", async () => {
+    const confirm = vi.spyOn(window, "confirm");
+    window.history.pushState(null, "", "/orders");
+    window.history.pushState(null, "", "/orders/ORD-2026-0001");
+    const { rerender } = render(<Harness dirty />);
+    rerender(<Harness dirty={false} />);
+
+    await pressBrowserBack();
+    await waitFor(() => expect(window.location.pathname).toBe("/orders"));
+    expect(confirm).not.toHaveBeenCalled();
   });
 });
