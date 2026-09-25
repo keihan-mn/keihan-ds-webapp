@@ -1,6 +1,9 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { describe, it, expect } from "vitest";
 import { act, render, renderHook, screen } from "@testing-library/react";
 import { Logo } from "@/components/brand/Logo";
+import { brand } from "@/lib/brand";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { OrdersProvider, useOrders } from "@/components/orders/OrdersProvider";
 import { isActivePath } from "@/lib/navigation";
@@ -17,6 +20,13 @@ describe("Logo", () => {
     expect(
       screen.getByRole("img", { name: "株式会社京阪工技社" }),
     ).toHaveAttribute("src", "/brand/logo.svg");
+  });
+
+  it("brand.logoSrc に設定したロゴが public/ に実在する", () => {
+    if (brand.logoSrc === null) return;
+    expect(existsSync(path.join(__dirname, "../public", brand.logoSrc))).toBe(
+      true,
+    );
   });
 });
 

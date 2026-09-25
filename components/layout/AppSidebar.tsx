@@ -21,9 +21,11 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <div className="flex flex-col gap-0.5 px-2 py-1.5 group-data-[collapsible=icon]:hidden">
+        <div className="flex items-center gap-3 px-2 py-1.5 group-data-[collapsible=icon]:hidden">
           <Logo />
-          <span className="text-xs text-muted-foreground">{brand.appName}</span>
+          <span className="text-sm leading-snug font-medium">
+            {brand.appName}
+          </span>
         </div>
       </SidebarHeader>
       <SidebarContent>
