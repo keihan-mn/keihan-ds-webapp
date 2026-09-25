@@ -16,6 +16,5 @@ components/ui
 .claude/skills/shadcn/
 .claude/skills/vercel-react-best-practices/
 
-# 設計書・計画・引き継ぎ資料は記録として書かれたままにする（整形で差分を出さない）
-docs/superpowers/
-HANDOFF.md
+# 設計書は記録として書かれたままにする（整形で差分を出さない）
+docs/design-system.md

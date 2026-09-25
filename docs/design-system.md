@@ -89,6 +89,11 @@ Next.js 16 / React 19 / TypeScript strict / Tailwind CSS v4（`@theme` で CSS �
 
 ## 8. 未決事項
 
-- 正式ロゴデータ（SVG）とロゴ使用ルール資料の受け取り
+- ロゴ使用ルール資料の受け取り（正式ロゴ SVG は受領済み。`public/brand/logo.svg` に配置）
 - 余白・行間の詰め具合、成功・注意色の最終値（部品カタログで実物を見て調整）
-- 社外ページ用ルール（第2段）
+- 社外ページ用ルール（第2段。別リポジトリ `keihan-ds-website` で用意する予定）
+- 見本の既知の細かい課題（未対応）:
+  - アプリにない URL（`/nope` 等）の 404 画面が Next.js 標準の英語表示（`app/not-found.tsx` を足すと直る）
+  - 768px 未満でメニューを押しても引き出しが閉じない（`AppSidebar` で `setOpenMobile(false)` を呼ぶ）
+  - 桁が極端に大きい金額のエラー文言が分かりにくい（`lib/schema.ts` の金額に上限を足す）
+  - 空白のない長い英数字の案件名で詳細の見出しがはみ出すおそれ（`PageHeader` の h1 に `break-words`）

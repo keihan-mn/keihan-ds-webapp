@@ -59,7 +59,7 @@ npm run dev
 - **部品は shadcn/ui から追加**: 自作しない。見本は `/catalog`
 - **AI にも守らせる**: `CLAUDE.md`・自社スキル `designing-keihan-ui`・`npm run check:design`（ルール違反の検出）・`npm run test`（色の読みやすさの検証）
 
-詳しくは [設計書](docs/superpowers/specs/2026-09-25-keihan-design-system-design.md) を参照してください。
+詳しくは [設計書](docs/design-system.md) を参照してください。
 
 ## チェックコマンド
 

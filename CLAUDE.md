@@ -1,16 +1,10 @@
 # 京阪工技社 業務アプリひな形
 
-## 引き継ぎ
-
-- 作業を始める前に、引き継ぎ資料の正本 [HANDOFF.md](HANDOFF.md) を読む
-- 引き継ぎ資料の正本は `HANDOFF.md` の1枚だけ。別の場所に引き継ぎメモを作らない
-- 引き継ぎ資料の作成・更新は `creating-handoffs` スキルに従う
-
 ## 概要
 
 京阪工技社デザインシステム（土台＋業務アプリ用ルール）に沿った Next.js 16 × shadcn/ui のひな形。
 新しい業務アプリはこのリポジトリをコピーして始める。設計の正本は
-[docs/superpowers/specs/2026-09-25-keihan-design-system-design.md](docs/superpowers/specs/2026-09-25-keihan-design-system-design.md)。
+[docs/design-system.md](docs/design-system.md)。
 
 ## 技術スタック
 

@@ -22,7 +22,7 @@ describe("AI 用ルール", () => {
       "Vercel",
       "npx shadcn@latest add",
       "@theme inline",
-      "HANDOFF.md",
+      "docs/design-system.md",
     ]) {
       expect(md, word).toContain(word);
     }
@@ -65,6 +65,20 @@ describe("AI 用ルール", () => {
       expect(existsSync(path.join(root, p)), p).toBe(true);
     }
   });
+
+  it.each(["README.md", "CLAUDE.md", "public/brand/README.md"])(
+    "%s のリポジトリ内リンクが実在するファイルを指している",
+    (file) => {
+      const md = read(file);
+      const links = [...md.matchAll(/\]\(([^)#\s]+)\)/g)]
+        .map((m) => m[1])
+        .filter((href) => !/^[a-z]+:/i.test(href));
+      for (const href of links) {
+        const target = path.join(root, path.dirname(file), href);
+        expect(existsSync(target), `${file} → ${href}`).toBe(true);
+      }
+    },
+  );
 
   it("流用スキルが同梱されている", () => {
     for (const s of [
