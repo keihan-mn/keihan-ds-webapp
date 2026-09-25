@@ -6,5 +6,5 @@ export const brand = {
    * 正式ロゴ（SVG）のパス。public/brand/ に置いたら "/brand/logo.svg" のように設定する。
    * null の間は社名テキストを表示する。手順は public/brand/README.md。
    */
-  logoSrc: null as string | null,
+  logoSrc: "/brand/logo.svg" as string | null,
 };

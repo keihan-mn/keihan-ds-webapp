@@ -2,9 +2,10 @@ import { brand } from "@/lib/brand";
 
 export function Logo({ src = brand.logoSrc }: { src?: string | null }) {
   if (src) {
-    // SVG ロゴは画像最適化が不要なため next/image ではなく img を使う
+    // SVG ロゴは画像最適化が不要なため next/image ではなく img を使う。
+    // 正式ロゴは縦型（マーク＋KEIHAN）のため、文字が読める高さ 44px（h-11）で表示する
     // eslint-disable-next-line @next/next/no-img-element
-    return <img src={src} alt={brand.companyName} className="h-6 w-auto" />;
+    return <img src={src} alt={brand.companyName} className="h-11 w-auto" />;
   }
   return (
     <span className="font-heading text-base font-bold text-primary">
