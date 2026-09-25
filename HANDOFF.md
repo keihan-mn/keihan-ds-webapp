@@ -1,6 +1,6 @@
 # HANDOFF（引き継ぎ資料・正本）
 
-最終更新: 2026-09-25（全12タスクの実装と最終レビューが完了。ブランチ feat/design-system-template は main へ未マージ）
+最終更新: 2026-09-25（全12タスクの実装と最終レビューが完了。main へローカルでマージ済み。GitHub へは未 push）
 
 ## 1. 目的と概要
 
@@ -25,7 +25,7 @@
 
 ## 3. 現在の状況
 
-- 実装計画の **全12タスクが完了**。ブランチ `feat/design-system-template`（main から分岐、**未 push・未マージ**）
+- 実装計画の **全12タスクが完了**。作業ブランチ `feat/design-system-template` は **main へローカルでマージ済み**（GitHub の origin へは**未 push**）
 - 確認済み: `npm run test`（114件）・`lint`・`check:design`・`build`・`format:check` すべて成功。画面は PC 幅（1280px）とタブレット幅（768px）で目視確認し、Review Focus 1〜5 も実機で確認済み
 - 最終レビュー（別エージェント）: Critical 0 / Important 1（ブラウザの「戻る」で未保存の変更が消える → **修正済み**）/ Minor 4（未対応。下の「5. 未決事項」）
 - 計画からの変更点（判断の記録）:
@@ -61,7 +61,7 @@
 
 ## 6. 次の一歩
 
-1. ユーザーにブランチの扱い（main へのマージ、push・PR 作成、またはそのまま保留）を確認する
+1. main を GitHub（origin）へ push するか、ユーザーに確認する
 2. 上の「細かい改善」4件を直すかユーザーに確認する
 3. 部品カタログ（`/catalog`）を実物で見ながら、余白・成功色・注意色をユーザーと調整する
 4. 正式ロゴを受け取ったら `public/brand/README.md` の手順で差し替える
