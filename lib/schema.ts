@@ -11,6 +11,10 @@ export const SERVICE_TYPES = [
 export type OrderStatus = (typeof ORDER_STATUSES)[number];
 export type ServiceType = (typeof SERVICE_TYPES)[number];
 
+/** 金額・数量の上限。桁あふれで「整数で入力」と誤った案内が出ないよう、整数チェックより先に確かめる */
+const MAX_AMOUNT = 999_999_999;
+const MAX_QUANTITY = 9_999_999;
+
 const isoDate = (label: string) =>
   z.string().regex(/^\d{4}-\d{2}-\d{2}$/, `${label}を入力してください`);
 
@@ -33,10 +37,12 @@ export const orderSchema = z
     status: z.enum(ORDER_STATUSES, { error: "状態を選択してください" }),
     quantity: z
       .number({ error: "数量は数字で入力してください" })
+      .max(MAX_QUANTITY, "数量は9,999,999以下で入力してください")
       .int("数量は整数で入力してください")
       .min(1, "数量は1以上で入力してください"),
     amount: z
       .number({ error: "金額は数字で入力してください" })
+      .max(MAX_AMOUNT, "金額は999,999,999円以下で入力してください")
       .int("金額は円単位の整数で入力してください")
       .min(0, "金額は0以上で入力してください"),
     receivedAt: isoDate("受付日"),

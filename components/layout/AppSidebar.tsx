@@ -12,12 +12,15 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { brand } from "@/lib/brand";
 import { isActivePath, navItems } from "@/lib/navigation";
 
 export function AppSidebar() {
   const pathname = usePathname();
+  // 768px 未満の引き出しは、メニューを押して移動したら閉じる（PC では何もしない）
+  const { setOpenMobile } = useSidebar();
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
@@ -38,6 +41,7 @@ export function AppSidebar() {
                     render={<Link href={href} />}
                     isActive={isActivePath(pathname, href)}
                     tooltip={label}
+                    onClick={() => setOpenMobile(false)}
                   >
                     <Icon />
                     <span>{label}</span>
