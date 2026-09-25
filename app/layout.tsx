@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Noto_Sans_JP } from "next/font/google";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
 // 英字・数字用。globals.css の --font-sans で先頭に置く。
@@ -35,7 +37,11 @@ export default function RootLayout({
       lang="ja"
       className={`${inter.variable} ${notoSansJp.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        {/* Sidebar の折りたたみ時ツールチップが TooltipProvider を要求する */}
+        <TooltipProvider delay={300}>{children}</TooltipProvider>
+        <Toaster position="top-center" />
+      </body>
     </html>
   );
 }
