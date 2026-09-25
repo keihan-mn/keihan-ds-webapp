@@ -37,12 +37,12 @@
 
 ## 同梱スキル
 
-| スキル | いつ使うか |
-|---|---|
-| designing-keihan-ui | UI の追加・変更・色・余白・レイアウト・フォーム作業のすべて |
-| shadcn | shadcn 部品の追加・カスタマイズ |
-| next-best-practices | Next.js 16 のファイル規約・RSC 境界 |
-| vercel-react-best-practices | React の性能最適化 |
+| スキル                      | いつ使うか                                                  |
+| --------------------------- | ----------------------------------------------------------- |
+| designing-keihan-ui         | UI の追加・変更・色・余白・レイアウト・フォーム作業のすべて |
+| shadcn                      | shadcn 部品の追加・カスタマイズ                             |
+| next-best-practices         | Next.js 16 のファイル規約・RSC 境界                         |
+| vercel-react-best-practices | React の性能最適化                                          |
 
 MUST: Next.js のコードを書く前に `node_modules/next/dist/docs/` の該当ドキュメントを読む。学習データではなくバンドル版が正。
 

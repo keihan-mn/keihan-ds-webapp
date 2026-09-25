@@ -18,7 +18,11 @@ describe("parseOrderForm", () => {
   });
 
   it("全角数字・カンマ・前後の空白を許容する", () => {
-    const r = parseOrderForm("ORD-2026-0001", { ...base, amount: " １２，０００ ", quantity: "1,200" });
+    const r = parseOrderForm("ORD-2026-0001", {
+      ...base,
+      amount: " １２，０００ ",
+      quantity: "1,200",
+    });
     expect(r.success && r.data.amount).toBe(12000);
     expect(r.success && r.data.quantity).toBe(1200);
   });
@@ -38,12 +42,25 @@ describe("parseOrderForm", () => {
   });
 
   it("納期が受付日より前ならエラー", () => {
-    const r = parseOrderForm("ORD-2026-0001", { ...base, receivedAt: "2026-09-10", dueDate: "2026-09-09" });
-    expect(!r.success && r.errors.dueDate).toBe("納期は受付日以降にしてください");
+    const r = parseOrderForm("ORD-2026-0001", {
+      ...base,
+      receivedAt: "2026-09-10",
+      dueDate: "2026-09-09",
+    });
+    expect(!r.success && r.errors.dueDate).toBe(
+      "納期は受付日以降にしてください",
+    );
   });
 
   it("複数のエラーを項目ごとに返す", () => {
-    const r = parseOrderForm("ORD-2026-0001", { ...base, title: "", amount: "x" });
-    expect(!r.success && Object.keys(r.errors).sort()).toEqual(["amount", "title"]);
+    const r = parseOrderForm("ORD-2026-0001", {
+      ...base,
+      title: "",
+      amount: "x",
+    });
+    expect(!r.success && Object.keys(r.errors).sort()).toEqual([
+      "amount",
+      "title",
+    ]);
   });
 });

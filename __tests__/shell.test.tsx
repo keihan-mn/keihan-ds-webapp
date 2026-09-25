@@ -14,7 +14,9 @@ describe("Logo", () => {
 
   it("ロゴ画像があれば社名を代替テキストにして表示する", () => {
     render(<Logo src="/brand/logo.svg" />);
-    expect(screen.getByRole("img", { name: "株式会社京阪工技社" })).toHaveAttribute("src", "/brand/logo.svg");
+    expect(
+      screen.getByRole("img", { name: "株式会社京阪工技社" }),
+    ).toHaveAttribute("src", "/brand/logo.svg");
   });
 });
 
@@ -31,8 +33,16 @@ describe("isActivePath", () => {
 
 describe("PageHeader", () => {
   it("見出し・説明・操作ボタンを表示する", () => {
-    render(<PageHeader title="受注案件" description="説明文" actions={<button>追加</button>} />);
-    expect(screen.getByRole("heading", { level: 1, name: "受注案件" })).toBeInTheDocument();
+    render(
+      <PageHeader
+        title="受注案件"
+        description="説明文"
+        actions={<button>追加</button>}
+      />,
+    );
+    expect(
+      screen.getByRole("heading", { level: 1, name: "受注案件" }),
+    ).toBeInTheDocument();
     expect(screen.getByText("説明文")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "追加" })).toBeInTheDocument();
   });
@@ -42,12 +52,18 @@ describe("OrdersProvider", () => {
   it("取得と更新ができる", () => {
     const initial = [makeOrder({ id: "ORD-2026-0001", title: "旧" })];
     const { result } = renderHook(() => useOrders(), {
-      wrapper: ({ children }) => <OrdersProvider initialOrders={initial}>{children}</OrdersProvider>,
+      wrapper: ({ children }) => (
+        <OrdersProvider initialOrders={initial}>{children}</OrdersProvider>
+      ),
     });
     expect(result.current.getOrder("ORD-2026-0001")?.title).toBe("旧");
     expect(result.current.getOrder("ORD-9999-9999")).toBeUndefined();
 
-    act(() => result.current.updateOrder(makeOrder({ id: "ORD-2026-0001", title: "新" })));
+    act(() =>
+      result.current.updateOrder(
+        makeOrder({ id: "ORD-2026-0001", title: "新" }),
+      ),
+    );
     expect(result.current.getOrder("ORD-2026-0001")?.title).toBe("新");
     expect(result.current.orders).toHaveLength(1);
   });

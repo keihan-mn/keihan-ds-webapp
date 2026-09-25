@@ -1,4 +1,9 @@
-import { ClipboardList, LayoutDashboard, Palette, type LucideIcon } from "lucide-react";
+import {
+  ClipboardList,
+  LayoutDashboard,
+  Palette,
+  type LucideIcon,
+} from "lucide-react";
 
 export type NavItem = { href: string; label: string; icon: LucideIcon };
 

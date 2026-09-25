@@ -1,6 +1,9 @@
 import { afterEach, describe, it, expect, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { UNSAVED_MESSAGE, useUnsavedChangesGuard } from "@/hooks/use-unsaved-changes-guard";
+import {
+  UNSAVED_MESSAGE,
+  useUnsavedChangesGuard,
+} from "@/hooks/use-unsaved-changes-guard";
 
 function Harness({ dirty }: { dirty: boolean }) {
   useUnsavedChangesGuard(dirty);
@@ -10,7 +13,11 @@ function Harness({ dirty }: { dirty: boolean }) {
 }
 
 function clickLink() {
-  const event = new MouseEvent("click", { bubbles: true, cancelable: true, button: 0 });
+  const event = new MouseEvent("click", {
+    bubbles: true,
+    cancelable: true,
+    button: 0,
+  });
   screen.getByText("一覧へ").dispatchEvent(event);
   return event;
 }

@@ -3,15 +3,42 @@ import { filterOrders, summarizeOrders } from "@/lib/orders";
 import { makeOrder } from "./fixtures";
 
 const orders = [
-  makeOrder({ id: "ORD-2026-0001", title: "カルテ電子化", customerName: "湖南中央病院", status: "作業中", amount: 1000 }),
-  makeOrder({ id: "ORD-2026-0002", title: "パンフレット増刷", customerName: "株式会社びわこ精機", status: "完了", amount: 2000, assignee: "佐藤" }),
-  makeOrder({ id: "ORD-2026-0003", title: "抄録集 製本", customerName: "近畿医療学会", status: "遅延", amount: 3000 }),
-  makeOrder({ id: "ORD-2026-0004", title: "研修テキスト", customerName: "湖国県職員研修所", status: "受付", amount: 0 }),
+  makeOrder({
+    id: "ORD-2026-0001",
+    title: "カルテ電子化",
+    customerName: "湖南中央病院",
+    status: "作業中",
+    amount: 1000,
+  }),
+  makeOrder({
+    id: "ORD-2026-0002",
+    title: "パンフレット増刷",
+    customerName: "株式会社びわこ精機",
+    status: "完了",
+    amount: 2000,
+    assignee: "佐藤",
+  }),
+  makeOrder({
+    id: "ORD-2026-0003",
+    title: "抄録集 製本",
+    customerName: "近畿医療学会",
+    status: "遅延",
+    amount: 3000,
+  }),
+  makeOrder({
+    id: "ORD-2026-0004",
+    title: "研修テキスト",
+    customerName: "湖国県職員研修所",
+    status: "受付",
+    amount: 0,
+  }),
 ];
 
 describe("filterOrders", () => {
   it("キーワード空・すべて なら全件", () => {
-    expect(filterOrders(orders, { keyword: "", status: "すべて" })).toHaveLength(4);
+    expect(
+      filterOrders(orders, { keyword: "", status: "すべて" }),
+    ).toHaveLength(4);
   });
 
   it("案件名・顧客名・受注番号・担当者のどれかに部分一致", () => {
@@ -24,19 +51,30 @@ describe("filterOrders", () => {
   });
 
   it("全角・半角と大文字・小文字の違いを無視する", () => {
-    expect(filterOrders(orders, { keyword: "ｏｒｄ-2026-０００３", status: "すべて" })).toHaveLength(1);
+    expect(
+      filterOrders(orders, {
+        keyword: "ｏｒｄ-2026-０００３",
+        status: "すべて",
+      }),
+    ).toHaveLength(1);
   });
 
   it("前後の空白を無視する", () => {
-    expect(filterOrders(orders, { keyword: "  病院 ", status: "すべて" })).toHaveLength(1);
+    expect(
+      filterOrders(orders, { keyword: "  病院 ", status: "すべて" }),
+    ).toHaveLength(1);
   });
 
   it("状態で絞り込む", () => {
-    expect(filterOrders(orders, { keyword: "", status: "遅延" }).map((o) => o.id)).toEqual(["ORD-2026-0003"]);
+    expect(
+      filterOrders(orders, { keyword: "", status: "遅延" }).map((o) => o.id),
+    ).toEqual(["ORD-2026-0003"]);
   });
 
   it("キーワードと状態は AND 条件。該当なしは空配列", () => {
-    expect(filterOrders(orders, { keyword: "病院", status: "完了" })).toEqual([]);
+    expect(filterOrders(orders, { keyword: "病院", status: "完了" })).toEqual(
+      [],
+    );
   });
 });
 

@@ -3,12 +3,14 @@
 ## 色
 
 **Incorrect**
+
 ```tsx
 <span className="text-green-600">完了</span>
 <div className="bg-[#0056A8] text-white">見出し</div>
 ```
 
 **Correct**
+
 ```tsx
 <StatusBadge status="完了" />
 <div className="bg-primary text-primary-foreground">見出し</div>
@@ -19,12 +21,14 @@
 ## 赤の使いどころ
 
 **Incorrect** — 目立たせたいから赤
+
 ```tsx
 <Button variant="destructive">今すぐ申し込む</Button>
 <Badge variant="destructive">遅延</Badge>
 ```
 
 **Correct** — 赤は削除とエラーだけ
+
 ```tsx
 <Button>申し込む</Button>
 <StatusBadge status="遅延" />  {/* warning（黄） */}
@@ -35,23 +39,31 @@
 ## base（Base UI）の書き方
 
 **Incorrect**
+
 ```tsx
-<Button asChild><Link href="/orders">一覧へ</Link></Button>
+<Button asChild>
+  <Link href="/orders">一覧へ</Link>
+</Button>
 ```
 
 **Correct** — リンクにするときは `nativeButton={false}` も付ける（付けないと Base UI がコンソールエラーを出す）
+
 ```tsx
-<Button render={<Link href="/orders" />} nativeButton={false}>一覧へ</Button>
+<Button render={<Link href="/orders" />} nativeButton={false}>
+  一覧へ
+</Button>
 ```
 
 ## 余白
 
 **Incorrect**
+
 ```tsx
 <div className="space-y-4">...</div>
 ```
 
 **Correct**
+
 ```tsx
 <div className="flex flex-col gap-4">...</div>
 ```
@@ -65,11 +77,13 @@
 - 未保存離脱は `useUnsavedChangesGuard(dirty)`
 
 **Incorrect** — 入力と同時に保存
+
 ```tsx
 <Input value={title} onChange={(e) => save({ title: e.target.value })} />
 ```
 
 **Correct** — フォームの状態を持ち、保存ボタンで確定
+
 ```tsx
 <Input id="title" value={values.title} onChange={(e) => set("title")(e.target.value)} />
 ...

@@ -39,6 +39,9 @@ export function summarizeOrders(orders: Order[]): OrderSummary {
     inProgress: countOf("受付") + countOf("作業中"),
     delayed: countOf("遅延"),
     totalAmount: orders.reduce((sum, o) => sum + o.amount, 0),
-    byStatus: ORDER_STATUSES.map((status) => ({ status, count: countOf(status) })),
+    byStatus: ORDER_STATUSES.map((status) => ({
+      status,
+      count: countOf(status),
+    })),
   };
 }

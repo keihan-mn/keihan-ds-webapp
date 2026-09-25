@@ -31,8 +31,7 @@ export const ORDER_FORM_KEYS = [
 export type OrderFormErrors = Partial<Record<keyof OrderFormValues, string>>;
 
 export type ParseOrderFormResult =
-  | { success: true; data: Order }
-  | { success: false; errors: OrderFormErrors };
+  { success: true; data: Order } | { success: false; errors: OrderFormErrors };
 
 export function toFormValues(order: Order): OrderFormValues {
   return {

@@ -12,13 +12,19 @@ type TokenSwatchProps = {
 };
 
 /** globals.css の値を実行時に読んで表示する。値をここに二重に書かないため */
-export function TokenSwatch({ name, className, description }: TokenSwatchProps) {
+export function TokenSwatch({
+  name,
+  className,
+  description,
+}: TokenSwatchProps) {
   const [value, setValue] = useState("");
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- DOM の CSS 変数を読むため
     setValue(
-      getComputedStyle(document.documentElement).getPropertyValue(`--${name}`).trim(),
+      getComputedStyle(document.documentElement)
+        .getPropertyValue(`--${name}`)
+        .trim(),
     );
   }, [name]);
 
@@ -29,7 +35,12 @@ export function TokenSwatch({ name, className, description }: TokenSwatchProps) 
         <code className="font-mono text-sm">--{name}</code>
         <span className="text-xs text-muted-foreground">
           {description}
-          {value && <> ・ <span className="font-mono">{value}</span></>}
+          {value && (
+            <>
+              {" "}
+              ・ <span className="font-mono">{value}</span>
+            </>
+          )}
         </span>
       </div>
     </div>

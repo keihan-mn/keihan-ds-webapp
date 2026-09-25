@@ -22,7 +22,8 @@ export const RULES = [
   },
   {
     rule: "arbitrary-color",
-    message: "任意値の色。globals.css のトークンを使う（足りなければ企画部に相談）",
+    message:
+      "任意値の色。globals.css のトークンを使う（足りなければ企画部に相談）",
     pattern: /-\[(?:#|rgb|hsl|oklch)/,
   },
   {
@@ -37,7 +38,8 @@ export const RULES = [
   },
   {
     rule: "card-radius",
-    message: "bg-card の島は rounded-lg に揃える（rounded-md は行・メニュー用）",
+    message:
+      "bg-card の島は rounded-lg に揃える（rounded-md は行・メニュー用）",
     pattern: /bg-card\b.*\brounded-md\b|\brounded-md\b.*bg-card\b/,
   },
 ];

@@ -13,13 +13,22 @@ export function OrderDetail({ id }: { id: string }) {
   const order = getOrder(id);
 
   if (!order) {
-    return <p className="text-muted-foreground">受注案件 {id} は見つかりませんでした。</p>;
+    return (
+      <p className="text-muted-foreground">
+        受注案件 {id} は見つかりませんでした。
+      </p>
+    );
   }
 
   return (
     <>
       <div>
-        <Button variant="ghost" size="sm" render={<Link href="/orders" />} nativeButton={false}>
+        <Button
+          variant="ghost"
+          size="sm"
+          render={<Link href="/orders" />}
+          nativeButton={false}
+        >
           <ArrowLeftIcon data-icon="inline-start" />
           一覧に戻る
         </Button>

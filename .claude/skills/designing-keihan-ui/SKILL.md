@@ -19,31 +19,31 @@ description: 京阪工技社の業務アプリ（このひな形とそのコピ�
 
 ## ブランドの約束
 
-| 項目 | 約束 |
-|---|---|
-| メイン色 | `primary`（#0056A8）。主ボタン・リンク・選択中に使う |
-| 赤 | `destructive`（#E60012）は **削除・エラー専用**。強調・状態表示に使わない |
-| 状態 | 受付＝`info` / 作業中＝`default` / 完了＝`success` / 遅延＝`warning`（`lib/status.ts`） |
-| 地の色 | ページ `background`、カード `card`（白） |
-| 角丸 | 基準 6px。`rounded-sm`（印）/`md`（行・メニュー）/`lg`（ボタン・入力・島）/`xl`（カード） |
-| 文字 | `font-sans`（Inter＋Noto Sans JP）。見出しは `font-heading font-bold`。数値は `tabular-nums` |
-| 主操作 | 1画面に塗りの青ボタンは1つ。他は `outline` / `ghost` |
-| 編集 | フォーム＋「保存」ボタン。未保存離脱は `useUnsavedChangesGuard` で確認 |
-| 端末 | PC 優先。768px 幅で崩れないこと（表は横スクロール、ページ全体ははみ出さない） |
+| 項目     | 約束                                                                                         |
+| -------- | -------------------------------------------------------------------------------------------- |
+| メイン色 | `primary`（#0056A8）。主ボタン・リンク・選択中に使う                                         |
+| 赤       | `destructive`（#E60012）は **削除・エラー専用**。強調・状態表示に使わない                    |
+| 状態     | 受付＝`info` / 作業中＝`default` / 完了＝`success` / 遅延＝`warning`（`lib/status.ts`）      |
+| 地の色   | ページ `background`、カード `card`（白）                                                     |
+| 角丸     | 基準 6px。`rounded-sm`（印）/`md`（行・メニュー）/`lg`（ボタン・入力・島）/`xl`（カード）    |
+| 文字     | `font-sans`（Inter＋Noto Sans JP）。見出しは `font-heading font-bold`。数値は `tabular-nums` |
+| 主操作   | 1画面に塗りの青ボタンは1つ。他は `outline` / `ghost`                                         |
+| 編集     | フォーム＋「保存」ボタン。未保存離脱は `useUnsavedChangesGuard` で確認                       |
+| 端末     | PC 優先。768px 幅で崩れないこと（表は横スクロール、ページ全体ははみ出さない）                |
 
 ## コード生成ルール
 
-| 禁止 | 正しい方法 | なぜ |
-|---|---|---|
-| `bg-blue-500` 等の色番号 | `bg-primary` 等の役割名 | 色の変更が1か所で済む。ブランドのブレを防ぐ |
-| `text-white` / `bg-black` | `text-primary-foreground` / `bg-foreground` | 同上 |
-| `bg-[#0056A8]` / `"#0056A8"` | トークン / `var(--primary)` | 同上 |
-| `rounded-[10px]` | `rounded-lg` 等 | 角丸の段階をそろえる |
-| `space-y-*` | `flex flex-col gap-*` | 子が条件で消えても余白が崩れない |
-| 呼び出し側 `className` で色・文字サイズ上書き | 部品に variant を追加 | コピペの蔓延を防ぐ |
-| `asChild` | `render` | このプロジェクトは base（Base UI） |
-| 自前 div のバッジ・区切り線 | `Badge` / `Separator` | アクセシビリティとテーマ連動が組み込み済み |
-| インライン自動保存・鉛筆アイコン編集 | フォーム＋保存ボタン | 金額・納期の誤変更を防ぐ |
+| 禁止                                          | 正しい方法                                  | なぜ                                        |
+| --------------------------------------------- | ------------------------------------------- | ------------------------------------------- |
+| `bg-blue-500` 等の色番号                      | `bg-primary` 等の役割名                     | 色の変更が1か所で済む。ブランドのブレを防ぐ |
+| `text-white` / `bg-black`                     | `text-primary-foreground` / `bg-foreground` | 同上                                        |
+| `bg-[#0056A8]` / `"#0056A8"`                  | トークン / `var(--primary)`                 | 同上                                        |
+| `rounded-[10px]`                              | `rounded-lg` 等                             | 角丸の段階をそろえる                        |
+| `space-y-*`                                   | `flex flex-col gap-*`                       | 子が条件で消えても余白が崩れない            |
+| 呼び出し側 `className` で色・文字サイズ上書き | 部品に variant を追加                       | コピペの蔓延を防ぐ                          |
+| `asChild`                                     | `render`                                    | このプロジェクトは base（Base UI）          |
+| 自前 div のバッジ・区切り線                   | `Badge` / `Separator`                       | アクセシビリティとテーマ連動が組み込み済み  |
+| インライン自動保存・鉛筆アイコン編集          | フォーム＋保存ボタン                        | 金額・納期の誤変更を防ぐ                    |
 
 具体例（正しい書き方／誤った書き方）は [references/coding-rules.md](references/coding-rules.md)。
 

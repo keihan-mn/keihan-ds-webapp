@@ -21,7 +21,12 @@ export function StatusChart({ data }: { data: OrderSummary["byStatus"] }) {
       <BarChart data={data} accessibilityLayer>
         <CartesianGrid vertical={false} />
         <XAxis dataKey="status" tickLine={false} axisLine={false} />
-        <YAxis allowDecimals={false} tickLine={false} axisLine={false} width={32} />
+        <YAxis
+          allowDecimals={false}
+          tickLine={false}
+          axisLine={false}
+          width={32}
+        />
         <ChartTooltip content={<ChartTooltipContent hideLabel />} />
         <Bar dataKey="count" radius={4}>
           {data.map((d) => (

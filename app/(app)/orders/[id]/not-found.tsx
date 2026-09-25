@@ -8,7 +8,11 @@ export default function OrderNotFound() {
       <p className="text-muted-foreground">
         受注番号が間違っているか、削除された可能性があります。
       </p>
-      <Button variant="outline" render={<Link href="/orders" />} nativeButton={false}>
+      <Button
+        variant="outline"
+        render={<Link href="/orders" />}
+        nativeButton={false}
+      >
         受注案件の一覧へ
       </Button>
     </div>

@@ -27,7 +27,10 @@ describe("findDesignDrift", () => {
 
   it("行番号を 1 始まりで返す", () => {
     const src = `const a = 1;\n<p className="text-red-600">`;
-    expect(findDesignDrift(src)[0]).toMatchObject({ line: 2, rule: "raw-color" });
+    expect(findDesignDrift(src)[0]).toMatchObject({
+      line: 2,
+      rule: "raw-color",
+    });
   });
 
   it("href のアンカー（#top 等）は誤検出しない", () => {

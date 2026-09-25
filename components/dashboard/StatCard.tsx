@@ -9,7 +9,12 @@ type StatCardProps = {
   tone?: "default" | "warning";
 };
 
-export function StatCard({ label, value, hint, tone = "default" }: StatCardProps) {
+export function StatCard({
+  label,
+  value,
+  hint,
+  tone = "default",
+}: StatCardProps) {
   return (
     <Card
       data-tone={tone}
@@ -17,7 +22,9 @@ export function StatCard({ label, value, hint, tone = "default" }: StatCardProps
     >
       <CardContent className="flex flex-col gap-1">
         <span className="text-sm text-muted-foreground">{label}</span>
-        <span className="font-heading text-2xl font-bold tabular-nums">{value}</span>
+        <span className="font-heading text-2xl font-bold tabular-nums">
+          {value}
+        </span>
         {hint && <span className="text-xs text-muted-foreground">{hint}</span>}
       </CardContent>
     </Card>

@@ -26,7 +26,9 @@ function walk(dir) {
 let count = 0;
 for (const file of TARGETS.flatMap(walk)) {
   for (const d of findDesignDrift(readFileSync(file, "utf-8"))) {
-    console.warn(`⚠  ${relative(ROOT, file)}:${d.line}  [${d.rule}] ${d.message}`);
+    console.warn(
+      `⚠  ${relative(ROOT, file)}:${d.line}  [${d.rule}] ${d.message}`,
+    );
     console.warn(`   ${d.text}\n`);
     count++;
   }

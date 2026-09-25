@@ -15,13 +15,26 @@ describe("AI 用ルール", () => {
 
   it("CLAUDE.md が技術スタックとデプロイ先を明記している", () => {
     const md = read("CLAUDE.md");
-    for (const word of ["base-nova", "lucide-react", "zod", "Vercel", "npx shadcn@latest add", "@theme inline", "HANDOFF.md"]) {
+    for (const word of [
+      "base-nova",
+      "lucide-react",
+      "zod",
+      "Vercel",
+      "npx shadcn@latest add",
+      "@theme inline",
+      "HANDOFF.md",
+    ]) {
       expect(md, word).toContain(word);
     }
   });
 
   it("tailwind.config.* を置かない（v4 は CSS の @theme で設定する）", () => {
-    for (const f of ["tailwind.config.js", "tailwind.config.ts", "tailwind.config.mjs", "tailwind.config.cjs"]) {
+    for (const f of [
+      "tailwind.config.js",
+      "tailwind.config.ts",
+      "tailwind.config.mjs",
+      "tailwind.config.cjs",
+    ]) {
       expect(existsSync(path.join(root, f)), f).toBe(false);
     }
   });
@@ -33,17 +46,36 @@ describe("AI 用ルール", () => {
 
   it("スキルが参照するファイルが実在する", () => {
     const skill = read(".claude/skills/designing-keihan-ui/SKILL.md");
-    for (const p of ["app/globals.css", "components/ui", "app/(app)/catalog/page.tsx", "lib/status.ts", "references/coding-rules.md"]) {
+    for (const p of [
+      "app/globals.css",
+      "components/ui",
+      "app/(app)/catalog/page.tsx",
+      "lib/status.ts",
+      "references/coding-rules.md",
+    ]) {
       expect(skill).toContain(p);
     }
-    for (const p of ["app/globals.css", "components/ui", "app/(app)/catalog/page.tsx", "lib/status.ts", ".claude/skills/designing-keihan-ui/references/coding-rules.md"]) {
+    for (const p of [
+      "app/globals.css",
+      "components/ui",
+      "app/(app)/catalog/page.tsx",
+      "lib/status.ts",
+      ".claude/skills/designing-keihan-ui/references/coding-rules.md",
+    ]) {
       expect(existsSync(path.join(root, p)), p).toBe(true);
     }
   });
 
   it("流用スキルが同梱されている", () => {
-    for (const s of ["shadcn", "next-best-practices", "vercel-react-best-practices"]) {
-      expect(existsSync(path.join(root, ".claude/skills", s, "SKILL.md")), s).toBe(true);
+    for (const s of [
+      "shadcn",
+      "next-best-practices",
+      "vercel-react-best-practices",
+    ]) {
+      expect(
+        existsSync(path.join(root, ".claude/skills", s, "SKILL.md")),
+        s,
+      ).toBe(true);
     }
   });
 });

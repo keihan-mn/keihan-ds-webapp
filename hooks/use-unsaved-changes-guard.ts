@@ -22,9 +22,12 @@ export function useUnsavedChangesGuard(when: boolean): void {
 
     const onClick = (event: MouseEvent) => {
       if (event.defaultPrevented || event.button !== 0) return;
-      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+        return;
       const anchor =
-        event.target instanceof Element ? event.target.closest("a[href]") : null;
+        event.target instanceof Element
+          ? event.target.closest("a[href]")
+          : null;
       if (!anchor || anchor.getAttribute("target") === "_blank") return;
       if (!window.confirm(UNSAVED_MESSAGE)) {
         event.preventDefault();

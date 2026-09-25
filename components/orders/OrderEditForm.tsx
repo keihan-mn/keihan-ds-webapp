@@ -4,7 +4,12 @@ import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Field, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field";
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -87,7 +92,11 @@ export function OrderEditForm({ order, onSave }: OrderEditFormProps) {
     <Field data-invalid={!!errors[key] || undefined}>
       <FieldLabel htmlFor={key}>{label}</FieldLabel>
       <Select value={values[key]} onValueChange={(v) => set(key)(v ?? "")}>
-        <SelectTrigger id={key} className="w-full" aria-invalid={!!errors[key] || undefined}>
+        <SelectTrigger
+          id={key}
+          className="w-full"
+          aria-invalid={!!errors[key] || undefined}
+        >
           <SelectValue />
         </SelectTrigger>
         <SelectContent align="start">
@@ -116,7 +125,10 @@ export function OrderEditForm({ order, onSave }: OrderEditFormProps) {
             {textField("amount", "金額（円）", { inputMode: "numeric" })}
             {textField("receivedAt", "受付日", { type: "date" })}
             {textField("dueDate", "納期", { type: "date" })}
-            <Field className="md:col-span-2" data-invalid={!!errors.note || undefined}>
+            <Field
+              className="md:col-span-2"
+              data-invalid={!!errors.note || undefined}
+            >
               <FieldLabel htmlFor="note">備考</FieldLabel>
               <Textarea
                 id="note"
@@ -130,7 +142,12 @@ export function OrderEditForm({ order, onSave }: OrderEditFormProps) {
           </FieldGroup>
         </CardContent>
         <CardFooter className="justify-end gap-2">
-          <Button type="button" variant="outline" disabled={!dirty} onClick={handleReset}>
+          <Button
+            type="button"
+            variant="outline"
+            disabled={!dirty}
+            onClick={handleReset}
+          >
             変更を取り消す
           </Button>
           <Button type="submit" disabled={!dirty}>

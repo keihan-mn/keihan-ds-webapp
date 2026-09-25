@@ -12,13 +12,13 @@ export type OrderStatus = (typeof ORDER_STATUSES)[number];
 export type ServiceType = (typeof SERVICE_TYPES)[number];
 
 const isoDate = (label: string) =>
-  z
-    .string()
-    .regex(/^\d{4}-\d{2}-\d{2}$/, `${label}を入力してください`);
+  z.string().regex(/^\d{4}-\d{2}-\d{2}$/, `${label}を入力してください`);
 
 export const orderSchema = z
   .object({
-    id: z.string().regex(/^ORD-\d{4}-\d{4}$/, "受注番号の形式が正しくありません"),
+    id: z
+      .string()
+      .regex(/^ORD-\d{4}-\d{4}$/, "受注番号の形式が正しくありません"),
     title: z
       .string()
       .trim()
