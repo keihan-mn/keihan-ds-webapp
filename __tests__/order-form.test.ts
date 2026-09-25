@@ -32,13 +32,34 @@ describe("parseOrderForm", () => {
     ["amount", "abc", "金額は数字で入力してください"],
     ["amount", "-1", "金額は0以上で入力してください"],
     ["amount", "10.5", "金額は円単位の整数で入力してください"],
+    ["amount", "1000000000", "金額は999,999,999円以下で入力してください"],
+    [
+      "amount",
+      "99999999999999999999",
+      "金額は999,999,999円以下で入力してください",
+    ],
     ["quantity", "0", "数量は1以上で入力してください"],
+    ["quantity", "10000000", "数量は9,999,999以下で入力してください"],
+    [
+      "quantity",
+      "99999999999999999999",
+      "数量は9,999,999以下で入力してください",
+    ],
     ["title", "   ", "案件名を入力してください"],
     ["customerName", "", "顧客名を入力してください"],
   ] as const)("%s=%j → 「%s」", (field, value, message) => {
     const r = parseOrderForm("ORD-2026-0001", { ...base, [field]: value });
     expect(r.success).toBe(false);
     expect(!r.success && r.errors[field]).toBe(message);
+  });
+
+  it("上限ちょうどの金額・数量は通る", () => {
+    const r = parseOrderForm("ORD-2026-0001", {
+      ...base,
+      amount: "999,999,999",
+      quantity: "9,999,999",
+    });
+    expect(r.success).toBe(true);
   });
 
   it("納期が受付日より前ならエラー", () => {
