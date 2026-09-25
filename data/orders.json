@@ -1,0 +1,14 @@
+[
+  { "id": "ORD-2026-0001", "title": "公文書スキャニング（第3期）", "customerName": "湖東市役所 総務課", "serviceType": "スキャニング", "status": "作業中", "quantity": 12000, "amount": 1860000, "receivedAt": "2026-09-01", "dueDate": "2026-10-15", "assignee": "山田", "note": "A3図面を含む。原本は返却要。" },
+  { "id": "ORD-2026-0002", "title": "会社案内パンフレット増刷", "customerName": "株式会社びわこ精機", "serviceType": "オンデマンド印刷", "status": "完了", "quantity": 500, "amount": 145000, "receivedAt": "2026-08-20", "dueDate": "2026-09-05", "assignee": "佐藤", "note": "" },
+  { "id": "ORD-2026-0003", "title": "学会抄録集 製本", "customerName": "近畿医療学会 事務局", "serviceType": "製本加工", "status": "受付", "quantity": 300, "amount": 420000, "receivedAt": "2026-09-22", "dueDate": "2026-10-20", "assignee": "鈴木", "note": "無線綴じ、表紙カラー" },
+  { "id": "ORD-2026-0004", "title": "設計図面 カラー出力", "customerName": "京滋建設コンサルタント株式会社", "serviceType": "コピー・プリント", "status": "遅延", "quantity": 850, "amount": 96000, "receivedAt": "2026-09-10", "dueDate": "2026-09-20", "assignee": "田中", "note": "A1サイズ。用紙入荷待ち" },
+  { "id": "ORD-2026-0005", "title": "カルテ電子化", "customerName": "湖南中央病院", "serviceType": "スキャニング", "status": "作業中", "quantity": 48000, "amount": 3200000, "receivedAt": "2026-07-15", "dueDate": "2026-11-30", "assignee": "山田", "note": "個人情報取扱い：施錠保管" },
+  { "id": "ORD-2026-0006", "title": "研修テキスト印刷", "customerName": "湖国県職員研修所", "serviceType": "オンデマンド印刷", "status": "受付", "quantity": 120, "amount": 88000, "receivedAt": "2026-09-24", "dueDate": "2026-10-08", "assignee": "佐藤", "note": "" },
+  { "id": "ORD-2026-0007", "title": "議事録製本（令和7年度）", "customerName": "湖北町議会事務局", "serviceType": "製本加工", "status": "完了", "quantity": 20, "amount": 64000, "receivedAt": "2026-08-01", "dueDate": "2026-08-29", "assignee": "鈴木", "note": "上製本" },
+  { "id": "ORD-2026-0008", "title": "イベントポスター出力", "customerName": "湖西観光協会", "serviceType": "コピー・プリント", "status": "完了", "quantity": 60, "amount": 39000, "receivedAt": "2026-09-02", "dueDate": "2026-09-09", "assignee": "田中", "note": "" },
+  { "id": "ORD-2026-0009", "title": "旧図書目録 デジタル化", "customerName": "瀬田川文化センター", "serviceType": "スキャニング", "status": "遅延", "quantity": 6500, "amount": 780000, "receivedAt": "2026-08-10", "dueDate": "2026-09-18", "assignee": "山田", "note": "劣化資料あり、手めくり対応" },
+  { "id": "ORD-2026-0010", "title": "商品カタログ 小ロット印刷", "customerName": "有限会社おうみ工房", "serviceType": "オンデマンド印刷", "status": "作業中", "quantity": 200, "amount": 176000, "receivedAt": "2026-09-15", "dueDate": "2026-09-30", "assignee": "佐藤", "note": "" },
+  { "id": "ORD-2026-0011", "title": "卒業論文 製本", "customerName": "湖南工科大学 理工学部", "serviceType": "製本加工", "status": "受付", "quantity": 45, "amount": 67500, "receivedAt": "2026-09-25", "dueDate": "2026-10-31", "assignee": "鈴木", "note": "" },
+  { "id": "ORD-2026-0012", "title": "契約書類 スキャン・OCR", "customerName": "株式会社なにわ物流", "serviceType": "スキャニング", "status": "完了", "quantity": 3400, "amount": 238000, "receivedAt": "2026-08-05", "dueDate": "2026-08-31", "assignee": "田中", "note": "" }
+]
