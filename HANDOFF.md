@@ -1,6 +1,6 @@
 # HANDOFF（引き継ぎ資料・正本）
 
-最終更新: 2026-09-25（全12タスクの実装と最終レビューが完了。main へローカルでマージ済み。GitHub へは未 push）
+最終更新: 2026-09-25（全12タスクの実装・最終レビュー・README 補足・正式ロゴ配置が完了。main を GitHub へ push 済み）
 
 ## 1. 目的と概要
 
@@ -25,7 +25,10 @@
 
 ## 3. 現在の状況
 
-- 実装計画の **全12タスクが完了**。作業ブランチ `feat/design-system-template` は **main へローカルでマージ済み**（GitHub の origin へは**未 push**）
+- 実装計画の **全12タスクが完了**。作業ブランチはすべて main へマージ済みで、**main は GitHub（origin）へ push 済み**
+- 実装完了後の追加作業（いずれも main にマージ・push 済み）:
+  - README に「使っている技術」の節と、土台の足し方（`tailwind.config.js` を作らない）・主ボタンは1画面に1つ・アイコンは lucide-react のみ、を補足（ブランチ `docs/readme-points`）
+  - 正式ロゴを配置（ブランチ `feat/brand-logo`。内容は「4. 確定事項」のロゴの項）
 - リポジトリ名を `keihan-ds-webapp`（業務アプリ用）に変更済み（GitHub: `keihan-mn/keihan-ds-webapp`）。ウェブページ用は別リポジトリ `keihan-ds-website` として作る予定
 - 確認済み: `npm run test`（114件）・`lint`・`check:design`・`build`・`format:check` すべて成功。画面は PC 幅（1280px）とタブレット幅（768px）で目視確認し、Review Focus 1〜5 も実機で確認済み
 - 最終レビュー（別エージェント）: Critical 0 / Important 1（ブラウザの「戻る」で未保存の変更が消える → **修正済み**）/ Minor 4（未対応。下の「5. 未決事項」）
@@ -63,11 +66,10 @@
 
 ## 6. 次の一歩
 
-1. main を GitHub（origin）へ push するか、ユーザーに確認する
-2. 手元のフォルダ名が旧名 `~/src/keihan-design-system` のままなら `~/src/keihan-ds-webapp` に変える
-3. ウェブページ用デザインシステム（`keihan-ds-website`）の設計を始める（土台の正本はこのリポジトリの `app/globals.css` の `:root` とし、値のずれはテストで検出する方針）
-4. 上の「細かい改善」4件を直すかユーザーに確認する
-5. 部品カタログ（`/catalog`）を実物で見ながら、余白・成功色・注意色をユーザーと調整する
+1. Vercel に GitHub リポジトリを接続して公開するか、ユーザーに確認する
+2. ウェブページ用デザインシステム（`keihan-ds-website`）の設計を始める（土台の正本はこのリポジトリの `app/globals.css` の `:root` とし、値のずれはテストで検出する方針）
+3. 上の「細かい改善」4件を直すかユーザーに確認する
+4. 部品カタログ（`/catalog`）を実物で見ながら、余白・成功色・注意色をユーザーと調整する
 
 ## 7. 進捗
 
