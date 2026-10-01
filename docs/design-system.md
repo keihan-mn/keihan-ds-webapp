@@ -77,7 +77,7 @@ Next.js 16 / React 19 / TypeScript strict / Tailwind CSS v4（`@theme` で CSS �
 
 1. `CLAUDE.md` — AI が最初に読む説明書（禁止事項の要約）
 2. 自社スキル `.claude/skills/designing-keihan-ui/` — 詳細ルールと、土台に足りないものが出たときの確認手順
-3. 自動チェック `npm run check:design` — 色の直書き（`bg-blue-500`・`#xxxxxx` 等）、任意角丸（`rounded-[..]`）、`bg-card`＋`rounded-md` の共起を検出
+3. 自動チェック `npm run check:design` — 色の直書き（`bg-blue-500`・`border-t-gray-200`・`ring-offset-white`・`shadow-[..#000]`・`#xxxxxx`・style や CSS の色コード等）、任意角丸（`rounded-[..]`）、`bg-card`＋`rounded-md` の共起（複数行の className も）を検出。ルールの一覧は `scripts/design-drift.mjs`
 
 同梱する外部スキル（見本から流用）: `shadcn` / `next-best-practices` / `vercel-react-best-practices`
 
